@@ -10,9 +10,9 @@
 </template>
 
 <script>
-import Navbar from './components/navbar.vue'
-import Sidebar from './components/sidebar.vue'
-import Chatroom from './components/chatroom.vue'
+import Navbar from './../components/navbar.vue'
+import Sidebar from './../components/sidebar.vue'
+import Chatroom from './../components/chatroom.vue'
 
 export default {
 	components: {
@@ -24,8 +24,8 @@ export default {
 </script>
 
 <style lang="stylus">
-@require './styles/vars'
-@require './styles/basic'
+@require './../styles/vars'
+@require './../styles/basic'
 
 .main-content
 	flex 1

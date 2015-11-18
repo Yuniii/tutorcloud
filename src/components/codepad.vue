@@ -1,6 +1,6 @@
 <template>
 	<ul id="editorTabs" class="editor-tab uk-tab" data-uk-tab>
-		<li id="newTab" class="new-tab"><a href=""><i class="uk-icon-plus"></i></a></li>
+		<li id="newTab" class="new-tab"><a href="javascript:void(0)"><i class="uk-icon-plus"></i></a></li>
 	</ul>
 	<div id="editor" class="editor"></div>
 </template>
@@ -10,6 +10,8 @@ import Firebase from 'firebase'
 
 export default {
 	ready: function() {
+		var ref = 'https://teamcloud.firebaseio.com/' + this.$route.params.room + '/codepad/';
+
 		var codeMirror = CodeMirror(document.getElementById('editor'), {
 			mode: "text/x-java",
 			matchBrackets: true,
@@ -17,7 +19,7 @@ export default {
 			indentUnit: 4,
 			viewportMargin: Infinity
 		});
-		var firepad = Firepad.fromCodeMirror(new Firebase('https://teamcloud.firebaseio.com/room1/codepad/Default'), codeMirror);
+		var firepad = Firepad.fromCodeMirror(new Firebase(ref + 'Default'), codeMirror);
 	}
 }
 
@@ -27,6 +29,7 @@ export default {
 @require '../styles/vars'
 
 .editor-tab
+	height tab-height
 	li:first-child
 		margin-left 29px
 
