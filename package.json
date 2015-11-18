@@ -7,8 +7,9 @@
     "build": "webpack --progress --hide-modules"
   },
   "dependencies": {
-    "vue-router": "^0.7.5",
-    "vue": "^1.0.8"
+    "firebase": "^2.3.1",
+    "vue": "^1.0.8",
+    "vue-router": "^0.7.5"
   },
   "devDependencies": {
     "babel-core": "^6.1.0",
