@@ -18,7 +18,7 @@ router.map({
 	'/:room': {
 		component: App,
 		subRoutes: {
-			'/editor': {
+			'/editor/:name': {
 				component: Codepad
 			},
 			'/whiteboard': {
@@ -32,7 +32,8 @@ router.map({
 });
 
 router.redirect({
-	'/:room': '/:room/editor'
+	'/:room': '/:room/editor/default',
+	'/:room/editor': '/:room/editor/default'
 })
 
 router.start(Main, '#app');
