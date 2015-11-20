@@ -1,20 +1,14 @@
 <template>
 	<div class="sidebar">
 		<ul class="uk-nav uk-nav-side">
+			<li class="run"><a href="javascript:void(0)"><i class="uk-icon-play"></i> 執行程式</a></li>
+			<li class="uk-nav-divider"></li>
 			<li id="newTab" class="new-tab"><a href="javascript:void(0)" @click="newCodepad"><i class="uk-icon-plus"></i> 新增分頁</a></li>
 			<li v-for="pad in codepads"><a v-link="{ path: '/' + $route.params.room + '/editor/' + pad }">{{ pad }}</a></li>
 			<li><a v-link="{ path: '/' + $route.params.room + '/editor/default' }">Default</a></li>
 		</ul>
 	</div>
 </template>
-
-<style lang="stylus">
-@require './../styles/vars'
-
-.sidebar
-	padding-top tab-height
-	width sidebar-width
-</style>
 
 <script>
 import store from './../lib/store'
@@ -49,3 +43,18 @@ export default {
 	}
 }
 </script>
+
+<style lang="stylus">
+@require './../styles/vars'
+
+.sidebar
+	padding 16px 6px 0
+	width sidebar-width
+	border-right light-border
+	.run
+		font-weight bold
+		text-align center
+	li a.v-link-active
+		background main-color
+		color #FFF
+</style>

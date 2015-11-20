@@ -2,10 +2,9 @@
 	<nav class="uk-navbar navbar">
 		<div class="navbar-nav uk-container-center">
 			<ul class="uk-navbar-nav">
-				<li><a v-link="{ path: '/' + $route.params.room }">程式撰寫</a></li>
+				<li><a v-link="{ path: '/' + $route.params.room + '/editor' }">程式撰寫</a></li>
 				<li><a v-link="{ path: '/' + $route.params.room + '/whiteboard' }" id="whiteboardBtn">白板</a></li>
 				<li><a v-link="{ path: '/' + $route.params.room + '/teaching-materials' }" id="materialBtn">教材管理</a></li>
-				<li><a href="javascript:void(0)">執行</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -31,6 +30,8 @@
 		&:hover, &:focus, &:active
 			background whiteA(.10)
 			color #FFF
+	li a.v-link-active
+		background whiteA(.20)
 
 .navbar-nav
 	width navbar-width
