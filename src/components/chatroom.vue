@@ -1,6 +1,8 @@
 <template>
 	<div id="chatroom" class="chatroom">
-		<div id="chatItems" class="chat-items"></div>
+		<div id="chatItems" class="chat-items">
+			<div class="chat-item" v-for="item in chatItems"><span class="chat-username">{{ item.user }}：</span><pre class="chat-content">{{ item.content }}</pre></div>
+		</div>
 		<div class="chat-input-wrapper">
 			<textarea id="chatInput" class="chat-input" rows="2" v-model="chatInput" @keydown="checkInput" @keyup="clearText"></textarea>
 		</div>
@@ -8,11 +10,20 @@
 </template>
 
 <script>
+import store from './../lib/store'
+
 export default {
 	data() {
 		return {
+			chatItems: {},
 			chatInput: ''
 		}
+	},
+
+	created() {
+		store.getChatItems(this.$route.params.room, val => {
+			this.chatItems = val;
+		});
 	},
 
 	methods: {
@@ -24,13 +35,20 @@ export default {
 		},
 
 		submitForm() {
-			console.log('"' + this.chatInput + '"');
+			store.addChatItem(this.$route.params.room, 'user1', this.chatInput, () => {
+				this.scrollToBottom();
+			});
 		},
 
 		clearText(e) {
 			if (event.keyCode == 13 && ! event.shiftKey) {
 				this.chatInput = '';
 			}
+		},
+
+		scrollToBottom() {
+			var el = document.getElementById('chatItems');
+			el.scrollTop = el.scrollHeight;
 		}
 	}
 }
@@ -40,16 +58,38 @@ export default {
 @require '../styles/vars'
 
 .chatroom
+	background #F6F6F6
 	border-left light-border
 	display flex
 	flex-direction column
 	width chatroom-width
 	height "calc(100vh - %s)" % navbar-height
-	padding chatroom-padding
 
 .chat-items
 	flex 1
 	overflow-y scroll
+	padding chatroom-padding
+
+.chat-item
+	overflow auto
+
+.chat-username
+	vertical-align top
+	font-weight bold
+
+pre.chat-content
+	display inline-block
+	margin 0
+	padding 5px 0 0
+	font-size 13px
+	max-width 100%
+	vertical-align top
+	word-break normal
+	word-wrap normal
+	white-space pre
+
+.chat-input-wrapper
+	background #FFF
 
 .chat-input
 	border none

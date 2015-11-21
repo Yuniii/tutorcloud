@@ -9,6 +9,7 @@ import Whiteboard from './components/whiteboard.vue'
 import TeachingMaterials from './components/teaching-materials.vue'
 import Empty from './components/empty.vue'
 
+Vue.config.debug = true;
 Vue.use(Router);
 var router = new Router();
 

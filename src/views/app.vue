@@ -15,9 +15,6 @@ import Chatroom from './../components/chatroom.vue'
 import Whiteboard from './../components/whiteboard.vue'
 
 export default {
-	ready() {
-		console.log(this.$route.path);
-	},
 	components: {
 		Navbar,
 		Chatroom,
