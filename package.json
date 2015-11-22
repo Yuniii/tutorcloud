@@ -4,7 +4,7 @@
   "repository": "yuniii/tutorcloud2",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --quiet",
-    "build": "webpack --progress --hide-modules"
+    "build": "webpack --progress --hide-modules --optimize-minimize"
   },
   "dependencies": {
     "firebase": "^2.3.1",
