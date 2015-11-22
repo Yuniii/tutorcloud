@@ -1,7 +1,7 @@
 <template>
 	<div class="sidebar">
 		<ul class="uk-nav uk-nav-side">
-			<li class="run"><a href="javascript:void(0)"><i class="uk-icon-play"></i> 執行程式</a></li>
+			<li class="run"><a href="javascript:void(0)" @click="runCode"><i class="uk-icon-play"></i> 執行程式</a></li>
 			<li class="uk-nav-divider"></li>
 			<li id="newTab" class="new-tab"><a href="javascript:void(0)" @click="newCodepad"><i class="uk-icon-plus"></i> 新增分頁</a></li>
 			<li v-for="pad in codepads">
@@ -14,6 +14,7 @@
 
 <script>
 import store from './../lib/store'
+import { escapeCode } from './../lib/util.js'
 
 export default {
 	data() {
@@ -35,6 +36,16 @@ export default {
 	},
 
 	methods: {
+		runCode() {
+			var orgCode = store.getCode();
+			var code = { code: escapeCode(orgCode) },
+				padname = this.$route.params.codepad;
+
+			this.$http.post('http://52.32.208.197:8081', code, function (data, status, request) {
+				store.addLog(padname, orgCode, data);
+			});
+		},
+
 		newCodepad() {
 			UIkit.modal.prompt("輸入分頁名稱：", null, (value) => {
 				if (value === '') {

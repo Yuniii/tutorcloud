@@ -1,5 +1,5 @@
 <template>
-	<!--<iframe v-bind:src="whiteboardURL" id="whiteboard" class="whiteboard" frameborder="0"></iframe>-->
+	<iframe v-bind:src="whiteboardURL" id="whiteboard" class="whiteboard" frameborder="0"></iframe>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 import Firebase from 'firebase';
-import { encodeB64 } from './../util.js'
+import { encodeB64, getNow } from './../util.js'
 
 const ref = new Firebase('https://teamcloud.firebaseio.com/');
 const store = {};
@@ -22,12 +22,12 @@ store.setUsername = function (newUsername) {
 	sessionStorage.setItem('username', newUsername);
 }
 
-store.getCurrentPad = function () {
-	return this.currentPad;
+store.setFirepad = function (pad) {
+	this.firepad = pad;
 }
 
-store.setCurrentPad = function (pad) {
-	this.currentPad = pad;
+store.getCode = function () {
+	return this.firepad.getText();
 }
 
 store.getCodepads = function (room, cb) {
@@ -56,4 +56,20 @@ store.addChatItem = function (room, username, content, cb) {
 		'user': username,
 		'content': content
 	}, cb);
+}
+
+store.logs = [];
+
+store.addLog = function (padname, code, data) {
+	var log = {
+		'time': getNow(),
+		'padname': padname,
+		'code': code,
+		'data': data
+	};
+	this.logs.push(log);
+}
+
+store.getLogs = function () {
+	return this.logs;
 }

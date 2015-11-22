@@ -23,6 +23,7 @@ export default {
 	created() {
 		store.getChatItems(this.$route.params.room, val => {
 			this.chatItems = val;
+			setTimeout(this.scrollToBottom, 200);
 		});
 	},
 

@@ -8,6 +8,7 @@
 <script>
 import Firebase from 'firebase'
 import Sidebar from './sidebar.vue'
+import store from './../lib/store'
 import { encodeB64, decodeB64 } from './../lib/util.js'
 
 export default {
@@ -33,6 +34,7 @@ export default {
 			return this.$route.router.go('/' + this.$route.params.room + '/editor/Default');
 		}
 		this.firepad = Firepad.fromCodeMirror(new Firebase(this.ref + 'Default'), this.codeMirror);
+		store.setFirepad(this.firepad);
 	},
 
 	route: {
@@ -51,6 +53,7 @@ export default {
 			}
 			this.codeMirror.setValue('');
 			this.firepad = Firepad.fromCodeMirror(new Firebase(this.ref + padname), this.codeMirror);
+			store.setFirepad(this.firepad);
 		}
 	},
 

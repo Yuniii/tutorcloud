@@ -5,6 +5,7 @@
 				<li><a v-link="{ path: '/' + $route.params.room + '/editor' }">程式撰寫</a></li>
 				<li><a v-link="{ path: '/' + $route.params.room + '/whiteboard' }" id="whiteboardBtn">白板</a></li>
 				<li><a v-link="{ path: '/' + $route.params.room + '/teaching-materials' }" id="materialBtn">教材管理</a></li>
+				<li><a v-link="{ path: '/' + $route.params.room + '/logs' }">編譯記錄</a></li>
 			</ul>
 			<div class="uk-navbar-flip">
 				<ul class="uk-navbar-nav">
