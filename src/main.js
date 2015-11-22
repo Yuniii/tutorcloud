@@ -13,7 +13,6 @@ import Empty from './components/empty.vue'
 
 import {escapeHTML, nl2br} from './lib/util.js'
 
-Vue.config.debug = true;
 Vue.use(Router);
 Vue.use(Resource);
 

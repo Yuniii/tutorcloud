@@ -43,6 +43,7 @@ export default {
 
 			this.$http.post('http://52.32.208.197:8081', code, function (data, status, request) {
 				store.addLog(padname, orgCode, data);
+				this.$route.router.go('/' + this.$route.params.room + '/logs');
 			});
 		},
 
