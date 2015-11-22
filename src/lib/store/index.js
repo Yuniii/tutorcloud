@@ -1,4 +1,5 @@
 import Firebase from 'firebase';
+import { encodeB64 } from './../util.js'
 
 const ref = new Firebase('https://teamcloud.firebaseio.com/');
 const store = {};
@@ -36,11 +37,12 @@ store.getCodepads = function (room, cb) {
 }
 
 store.addCodepad = function (room, name, cb) {
-	console.log(ref.child(room + '/codepadList').push(name));
+	ref.child(room + '/codepadList').push(name);
 }
 
 store.deleteCodepad = function (room, pad) {
 	ref.child(room + '/codepadList/' + pad.key).remove();
+	ref.child(room + '/codepad/' + encodeB64(pad.name)).remove();
 }
 
 store.getChatItems = function (room, cb) {

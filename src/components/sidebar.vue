@@ -47,6 +47,7 @@ export default {
 
 		deleteCodepad(pad) {
 			UIkit.modal.confirm('確定要刪除 ' + pad.name + ' 嗎？', () => {
+				this.$route.router.go('/' + this.$route.params.room + '/editor/Default');
 				store.deleteCodepad(this.$route.params.room, pad);
 				this.codepads.$remove(pad);
 			});

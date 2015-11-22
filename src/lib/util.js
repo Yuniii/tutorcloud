@@ -12,16 +12,7 @@ export function escapeHTML(str) {
 export function nl2br(str) {
 	return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1<br>$2');
 }
-/*
-export function escapeFirebaseURL(str) {
-	return str
-	.replace(/./g, '-．-')
-	.replace(/#/g, '-＃-')
-	.replace(/$/g, '-＄-')
-	.replace(/\[/g, '-［-')
-	.replace(/\]/g, '-］-');
-}
-*/
+
 export function encodeB64(str) {
 	return window.btoa(unescape(encodeURIComponent(str)));
 }
