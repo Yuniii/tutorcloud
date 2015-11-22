@@ -6,9 +6,28 @@
 				<li><a v-link="{ path: '/' + $route.params.room + '/whiteboard' }" id="whiteboardBtn">白板</a></li>
 				<li><a v-link="{ path: '/' + $route.params.room + '/teaching-materials' }" id="materialBtn">教材管理</a></li>
 			</ul>
+			<div class="uk-navbar-flip">
+				<ul class="uk-navbar-nav">
+					<li class="uk-parent" data-uk-dropdown="{mode:'click'}">
+						<a href="javascript:void(0)">設定 <i class="uk-icon-caret-down"></i></a>
+						<setting-form></setting-form>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</nav>
 </template>
+
+<script>
+import SettingForm from './setting-form.vue'
+
+export default {
+	components: {
+		SettingForm
+	}
+}
+
+</script>
 
 <style lang="stylus">
 @require './../styles/vars'
@@ -32,6 +51,10 @@
 			color #FFF
 	li a.v-link-active
 		background whiteA(.20)
+	li.uk-open a
+		&:hover, &:focus, &:active
+			color #444
+			background #f5f5f5
 
 .navbar-nav
 	width navbar-width

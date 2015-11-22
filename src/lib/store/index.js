@@ -5,14 +5,42 @@ const store = {};
 
 export default store;
 
-store.getCodepads = function(room, cb) {
-	ref.child(room + '/codepadList').once('value', function(snap) {
+if (sessionStorage.getItem('username') !== null) {
+	store.username = sessionStorage.getItem('username');
+}
+
+store.getUsername = function () {
+	if (typeof this.username === 'undefined' || this.username === '') {
+		return '無名氏';
+	}
+	return this.username;
+}
+
+store.setUsername = function (newUsername) {
+	this.username = newUsername;
+	sessionStorage.setItem('username', newUsername);
+}
+
+store.getCurrentPad = function () {
+	return this.currentPad;
+}
+
+store.setCurrentPad = function (pad) {
+	this.currentPad = pad;
+}
+
+store.getCodepads = function (room, cb) {
+	ref.child(room + '/codepadList').on('value', function(snap) {
 		cb(snap.val());
 	});
 }
 
-store.addCodepad = function(room, name, cb) {
-	ref.child(room + '/codepadList').push(name);
+store.addCodepad = function (room, name, cb) {
+	console.log(ref.child(room + '/codepadList').push(name));
+}
+
+store.deleteCodepad = function (room, pad) {
+	ref.child(room + '/codepadList/' + pad.key).remove();
 }
 
 store.getChatItems = function (room, cb) {

@@ -4,8 +4,10 @@
 			<li class="run"><a href="javascript:void(0)"><i class="uk-icon-play"></i> 執行程式</a></li>
 			<li class="uk-nav-divider"></li>
 			<li id="newTab" class="new-tab"><a href="javascript:void(0)" @click="newCodepad"><i class="uk-icon-plus"></i> 新增分頁</a></li>
-			<li v-for="pad in codepads"><a v-link="{ path: '/' + $route.params.room + '/editor/' + pad }">{{ pad }}</a></li>
-			<li><a v-link="{ path: '/' + $route.params.room + '/editor/default' }">Default</a></li>
+			<li v-for="pad in codepads">
+				<div v-link="{ path: '/' + $route.params.room + '/editor/' + pad.name }" class="pad-tab"><i class="uk-icon-times delete-pad" @click="deleteCodepad(pad)"></i>{{ pad.name }}</div>
+			</li>
+			<li><div v-link="{ path: '/' + $route.params.room + '/editor/Default' }" class="pad-tab">Default</div></li>
 		</ul>
 	</div>
 </template>
@@ -21,10 +23,13 @@ export default {
 	},
 
 	ready() {
-		this.codepads = [];
 		store.getCodepads(this.$route.params.room, val => {
+			this.codepads = [];
 			for (var key in val) {
-				this.codepads.push(val[key]);
+				this.codepads.push({
+					'key': key,
+					'name': val[key]
+				});
 			}
 		});
 	},
@@ -36,9 +41,15 @@ export default {
 					return;
 				}
 				store.addCodepad(this.$route.params.room, value)
-				this.codepads.push(value);
 			}
 			, {labels: {Ok: "確認", Cancel: "取消"}});
+		},
+
+		deleteCodepad(pad) {
+			UIkit.modal.confirm('確定要刪除 ' + pad.name + ' 嗎？', () => {
+				store.deleteCodepad(this.$route.params.room, pad);
+				this.codepads.$remove(pad);
+			});
 		}
 	}
 }
@@ -46,6 +57,7 @@ export default {
 
 <style lang="stylus">
 @require './../styles/vars'
+@require './../styles/functions'
 
 .sidebar
 	padding 16px 6px 0
@@ -54,7 +66,25 @@ export default {
 	.run
 		font-weight bold
 		text-align center
-	li a.v-link-active
+	.new-tab
+		text-align center
+	.pad-tab
+		cursor pointer
+		padding 5px 15px
+		&:hover
+			background blackA(.05)
+			color #444
+	li .v-link-active
 		background main-color
 		color #FFF
+		&:hover
+			background main-color
+			color #FFF
+	.delete-pad
+		display inline-block
+		width 15px
+		line-height 37px
+		margin-right 5px
+		&:hover
+			color #C00
 </style>

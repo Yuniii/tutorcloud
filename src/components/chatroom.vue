@@ -1,7 +1,7 @@
 <template>
 	<div id="chatroom" class="chatroom">
 		<div id="chatItems" class="chat-items">
-			<div class="chat-item" v-for="item in chatItems"><span class="chat-username">{{ item.user }}：</span><pre class="chat-content">{{ item.content }}</pre></div>
+			<div class="chat-item" v-for="item in chatItems"><span class="chat-username">{{ item.user }}：</span><span class="chat-content">{{{ item.content | escapeHTML | nl2br }}}</span></div>
 		</div>
 		<div class="chat-input-wrapper">
 			<textarea id="chatInput" class="chat-input" rows="2" v-model="chatInput" @keydown="checkInput" @keyup="clearText"></textarea>
@@ -30,12 +30,11 @@ export default {
 		checkInput(e) {
 			if (event.keyCode == 13 && ! event.shiftKey) {
 				this.submitForm();
-
 			}
 		},
 
 		submitForm() {
-			store.addChatItem(this.$route.params.room, 'user1', this.chatInput, () => {
+			store.addChatItem(this.$route.params.room, store.getUsername(), this.chatInput, () => {
 				this.scrollToBottom();
 			});
 		},
@@ -77,16 +76,8 @@ export default {
 	vertical-align top
 	font-weight bold
 
-pre.chat-content
-	display inline-block
-	margin 0
-	padding 5px 0 0
-	font-size 13px
-	max-width 100%
-	vertical-align top
-	word-break normal
-	word-wrap normal
-	white-space pre
+.chat-content
+	tab-size 4
 
 .chat-input-wrapper
 	background #FFF

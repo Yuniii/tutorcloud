@@ -9,8 +9,14 @@ import Whiteboard from './components/whiteboard.vue'
 import TeachingMaterials from './components/teaching-materials.vue'
 import Empty from './components/empty.vue'
 
+import {escapeHTML, nl2br} from './lib/util.js'
+
 Vue.config.debug = true;
 Vue.use(Router);
+
+Vue.filter('escapeHTML', escapeHTML);
+Vue.filter('nl2br', nl2br);
+
 var router = new Router();
 
 router.map({
@@ -20,7 +26,7 @@ router.map({
 	'/:room': {
 		component: App,
 		subRoutes: {
-			'/editor/:name': {
+			'/editor/:codepad': {
 				component: Codepad
 			},
 			'/whiteboard': {
@@ -34,8 +40,8 @@ router.map({
 });
 
 router.redirect({
-	'/:room': '/:room/editor/default',
-	'/:room/editor': '/:room/editor/default'
+	'/:room': '/:room/editor/Default',
+	'/:room/editor': '/:room/editor/Default'
 });
 
 router.start(Main, '#app');
