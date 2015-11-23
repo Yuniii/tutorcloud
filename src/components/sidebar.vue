@@ -14,7 +14,6 @@
 
 <script>
 import store from './../lib/store'
-import { escapeCode } from './../lib/util.js'
 
 export default {
 	data() {
@@ -37,12 +36,11 @@ export default {
 
 	methods: {
 		runCode() {
-			var orgCode = store.getCode();
-			var code = { code: escapeCode(orgCode) },
+			var code = { code: store.getCode() },
 				padname = this.$route.params.codepad;
 
 			this.$http.post('http://52.32.208.197:8081', code, function (data, status, request) {
-				store.addLog(padname, orgCode, data);
+				store.addLog(padname, code.code, data);
 				this.$route.router.go('/' + this.$route.params.room + '/logs');
 			});
 		},
