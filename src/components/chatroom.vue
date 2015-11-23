@@ -29,7 +29,7 @@ export default {
 
 	methods: {
 		checkInput(e) {
-			if (event.keyCode == 13 && ! event.shiftKey) {
+			if (event.keyCode == 13 && ! event.shiftKey && this.chatInput !== '') {
 				this.submitForm();
 			}
 		},
