@@ -34,3 +34,7 @@ export function getNow() {
 	var now = new Date();
 	return '' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
 }
+
+export function isEmpty(str) {
+	return (str.trim().replace(/(\r\n|\n|\r)/gm, '') === '');
+}

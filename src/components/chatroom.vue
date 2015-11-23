@@ -11,6 +11,7 @@
 
 <script>
 import store from './../lib/store'
+import { isEmpty } from './../lib/util.js'
 
 export default {
 	data() {
@@ -29,7 +30,7 @@ export default {
 
 	methods: {
 		checkInput(e) {
-			if (event.keyCode == 13 && ! event.shiftKey && this.chatInput !== '') {
+			if (event.keyCode == 13 && ! event.shiftKey && ! isEmpty(this.chatInput)) {
 				this.submitForm();
 			}
 		},
