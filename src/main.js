@@ -6,8 +6,6 @@ import Main from './main.vue'
 import App from './views/app.vue'
 import Homepage from './views/homepage.vue'
 import Codepad from './components/codepad.vue'
-import Whiteboard from './components/whiteboard.vue'
-import TeachingMaterials from './components/teaching-materials.vue'
 import Logs from './components/logs.vue'
 import Empty from './components/empty.vue'
 
@@ -35,7 +33,7 @@ router.map({
 				component: Empty
 			},
 			'/teaching-materials': {
-				component: TeachingMaterials
+				component: Empty
 			},
 			'/logs': {
 				component: Logs

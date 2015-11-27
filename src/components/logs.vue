@@ -1,7 +1,7 @@
 <template>
 	<div class="logs-container">
 		<h1 id="my-ida">編譯記錄</h1>
-		<div v-for="log in logs" class="uk-panel uk-panel-box log">
+		<div v-for="log in logs | orderBy 'time' -1" class="uk-panel uk-panel-box log">
 			<dl class="uk-description-list-horizontal">
 				<div class="uk-panel-badge"><a href="javascript:void(0)" class="uk-close uk-close-alt delete" @click="delete(log)"></a></div>
 				<dt>名稱</dt>

@@ -9,6 +9,7 @@
 			</ul>
 			<div class="uk-navbar-flip">
 				<ul class="uk-navbar-nav">
+					<li><a @click="closeTm">關閉教材</a></li>
 					<li class="uk-parent" data-uk-dropdown="{mode:'click'}">
 						<a href="javascript:void(0)">設定 <i class="uk-icon-caret-down"></i></a>
 						<setting-form></setting-form>
@@ -23,12 +24,18 @@
 import SettingForm from './setting-form.vue'
 
 export default {
+	methods: {
+		closeTm() {
+			document.getElementById('tm').src = "http://52.32.208.197/?room=" + this.$route.params.room;
+		}
+	},
+
 	components: {
 		SettingForm
 	}
 }
-
 </script>
+
 
 <style lang="stylus">
 @require './../styles/vars'
