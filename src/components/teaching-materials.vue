@@ -8,7 +8,7 @@
 export default {
 	data() {
 		return {
-			tmURL: 'http://52.32.208.197/?room=' + this.$route.params.room
+			tmURL: 'http://52.34.251.134/?room=' + this.$route.params.room
 		}
 	}
 }

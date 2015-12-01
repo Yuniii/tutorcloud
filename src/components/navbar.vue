@@ -26,7 +26,7 @@ import SettingForm from './setting-form.vue'
 export default {
 	methods: {
 		closeTm() {
-			document.getElementById('tm').src = "http://52.32.208.197/?room=" + this.$route.params.room;
+			document.getElementById('tm').src = "http://52.34.251.134/?room=" + this.$route.params.room;
 		}
 	},
 

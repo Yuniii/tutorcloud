@@ -6,7 +6,7 @@
 export default {
 	data() {
 		return {
-			whiteboardURL: 'http://52.32.208.197:9002/d/' + this.$route.params.room
+			whiteboardURL: 'http://52.34.251.134:9002/d/' + this.$route.params.room
 		}
 	}
 }

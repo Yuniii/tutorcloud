@@ -39,7 +39,7 @@ export default {
 			var code = { code: store.getCode() },
 				padname = this.$route.params.codepad;
 
-			this.$http.post('http://52.32.208.197:8081', code, function (data, status, request) {
+			this.$http.post('http://52.34.251.134:8081', code, function (data, status, request) {
 				store.addLog(padname, code.code, data);
 				this.$route.router.go('/' + this.$route.params.room + '/logs');
 			});
